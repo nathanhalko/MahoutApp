@@ -1,0 +1,28 @@
+
+/**
+  * Shell-like imports
+  * comment out when running, is very slow to re-import these every time
+  */
+
+import scala.Predef._
+import scala.collection.JavaConversions._
+
+import org.apache.spark.SparkContext._
+
+import org.apache.mahout.math._
+import org.apache.mahout.math.drm._
+import org.apache.mahout.math.drm.RLikeDrmOps._
+import org.apache.mahout.math.scalabindings.RLikeOps._
+import org.apache.mahout.sparkbindings._
+
+
+/**
+  * from the shell run
+  * :load mahout_script.mscala
+  */
+
+
+val A = Matrices.gaussianView(1000,500,0)
+val drmA = drmParallelize(A, 25)
+val drmAtA = drmA.t %*% drmA
+val AtA = drmAtA.collect
