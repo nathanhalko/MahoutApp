@@ -24,10 +24,6 @@ class RidgeRegression extends FunSuite with DistributedSparkSuite with Matchers 
 
   /**
     * Distributed ridge
-    * @param drmX
-    * @param y
-    * @param lambda
-    * @return
     */
   def dridge(drmX: DrmLike[Int], y: Vector, lambda: Double): Vector = {
     require(drmX.nrow == y.length, "Target and dataset have different point count.")
@@ -49,6 +45,10 @@ class RidgeRegression extends FunSuite with DistributedSparkSuite with Matchers 
     beta
   }
 
+  /**
+    * Create simulated data: Given a solution vector `beta` return a system such that
+    * beta is a close solution to A*beta=y
+    */
   def simData(beta: Vector, m: Int, noiseSigma: Double = 0.04): (Matrix, Vector) = {
     val n = beta.length
     val mxData = Matrices.symmetricUniformView(m, n, 1234).cloned
@@ -67,6 +67,9 @@ class RidgeRegression extends FunSuite with DistributedSparkSuite with Matchers 
     mxData(::, 1 until n) -> y
   }
 
+  /**
+    * ACTION!
+    */
   test("ols") {
     setLogLevel(Level.TRACE)
 

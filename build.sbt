@@ -13,6 +13,7 @@ lazy val root = (project in file(".")).
       "org.apache.mahout" %% "mahout-math-scala" % mahoutVer,
       "org.apache.mahout" %% "mahout-spark" % mahoutVer,
       //      "org.apache.spark" %% "spark-core" % sparkVer
+      "org.apache.spark" %% "spark-mllib" % sparkVer,
       "org.scalatest" %% "scalatest" % "2.2.4" % "test",
       "org.apache.mahout" %% "mahout-math-scala" % mahoutVer % "test" classifier "tests",
       "org.apache.mahout" %% "mahout-spark" % mahoutVer % "test" classifier "tests"
